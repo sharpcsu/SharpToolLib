@@ -26,6 +26,7 @@ public class JsonUtil {
             Gson gson = new Gson();
             return gson.toJson(map);
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }
