@@ -19,8 +19,8 @@ public class 获取电话号码信息 {
 
     /**
      * 获取所有的号码信息
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 电话号码
      */
     public static ArrayList<PhoneInfo> getAllPhone(Context context) {
         ContentResolver resolver = context.getContentResolver();
@@ -30,7 +30,7 @@ public class 获取电话号码信息 {
                 ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
                 ContactsContract.CommonDataKinds.Phone.CONTACT_ID };
         Cursor cursor = resolver.query(uri, projection, null, null, null);
-        ArrayList<PhoneInfo> list = new ArrayList<PhoneInfo>();
+        ArrayList<PhoneInfo> list = new ArrayList<>();
         if (cursor != null) {
             while (cursor.moveToNext()) {
                 String number = cursor.getString(0);
@@ -41,14 +41,15 @@ public class 获取电话号码信息 {
             }
             cursor.close();
         }
+
         return list;
     }
 
     /**
      * 获取联系人图片
-     * @param context
+     * @param context 上下文
      * @param id 联系人id
-     * @return
+     * @return 联系人头像
      */
     public static Bitmap getContactPhoto(Context context, int id) {
         ContentResolver resolver = context.getContentResolver();
@@ -68,16 +69,22 @@ public class 获取电话号码信息 {
     }
 }
 
+/**
+ * 电话信息实体类
+ * 时间: 2016/3/1 23:38
+ */
 class PhoneInfo {
     public String mNumber;
     public String mName;
     public int mId;
+
     public PhoneInfo(String number, String name, int id) {
         super();
         mNumber = number;
         mName = name;
         mId = id;
     }
+
     public PhoneInfo() {
         super();
     }

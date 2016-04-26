@@ -10,6 +10,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
+ * 在子线程中使用HttpUrlConnection连接网络 - netConnection()
+ *
  * Created by 杨威 on 2016/2/11 - 15:43
  */
 public class 网络连接 {
@@ -57,8 +59,8 @@ public class 网络连接 {
                         inputStream.close();
 
 
-                        //△△△△△△3. 子线程中创建一个Message对象
-                        Message message = new Message();
+                        //△△△△△△3. 如果当前消息池中有则返回一个，没有则创建
+                        Message message = Message.obtain();
                         //△△△△△△4. 将子线程中获取的数据绑定给message对象
                         message.obj = "result";
                         //△△△△△△5. 使用主线程中的handler对象将子线程中的message对象发送到主线程
